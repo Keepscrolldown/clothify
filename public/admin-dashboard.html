@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Clothify</title>
+    <link rel="stylesheet" href="dashboard-styles.css">
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="header-content">
+            <div>
+                <h1 class="header-logo">CLOTHIFY</h1>
+                <p class="header-subtitle">Admin Dashboard</p>
+            </div>
+            <div class="header-actions">
+                <a href="index.html" class="header-link">View Store</a>
+                <button id="logout-btn" class="logout-button" data-testid="logout-btn">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="dashboard-main">
+        <div class="content-header">
+            <div>
+                <h2 class="content-title">Product Management</h2>
+                <p class="content-subtitle">Manage your product inventory</p>
+            </div>
+            <button id="add-product-btn" class="add-button" data-testid="add-product-btn">+ ADD PRODUCT</button>
+        </div>
+
+        <div id="loading" class="loading">Loading products...</div>
+        <div id="products-table-container" style="display: none;"></div>
+        <div id="no-products" class="empty-state" style="display: none;">
+            <p class="empty-text">No products found</p>
+            <button class="empty-button" onclick="openModal()">Add Your First Product</button>
+        </div>
+    </main>
+
+    <div id="modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title" class="modal-title">Add New Product</h3>
+            </div>
+            <form id="product-form" class="product-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label">Product Name *</label>
+                        <input type="text" id="product-name" class="form-input" required data-testid="product-name-input">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Price (₹) *</label>
+                        <input type="number" id="product-price" class="form-input" required data-testid="product-price-input">
+                    </div>
+                    <div class="form-group full-width">
+                        <label class="form-label">Image URL *</label>
+                        <input type="url" id="product-image" class="form-input" placeholder="https://example.com/image.jpg" required data-testid="product-image-input">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Category</label>
+                        <input type="text" id="product-category" class="form-input" placeholder="e.g., Dresses, Shirts" data-testid="product-category-input">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Stock</label>
+                        <input type="number" id="product-stock" class="form-input" data-testid="product-stock-input">
+                    </div>
+                    <div class="form-group full-width">
+                        <label class="form-label">Sizes (comma-separated)</label>
+                        <input type="text" id="product-sizes" class="form-input" placeholder="S, M, L, XL" data-testid="product-sizes-input">
+                    </div>
+                    <div class="form-group full-width">
+                        <label class="form-label">Description</label>
+                        <textarea id="product-description" class="form-textarea" rows="3" data-testid="product-description-input"></textarea>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="cancel-button" onclick="closeModal()" data-testid="cancel-modal-btn">Cancel</button>
+                    <button type="submit" class="submit-button" data-testid="submit-product-btn">
+                        <span id="submit-text">Create</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+    <script src="admin-dashboard.js"></script>
+</body>
+</html>
